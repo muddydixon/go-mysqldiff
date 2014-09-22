@@ -35,3 +35,8 @@ CREATE TABLE yakizakana (
 ## Schema type detection
 
 mysqldiff detects one from two shcema type by existance of given file.
+
+## TODO
+
+* write tests.
+* use goroutin/channel to read schemas.
