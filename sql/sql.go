@@ -71,12 +71,12 @@ func (schema *Schema) ParseSQL (contents []byte) error {
 }
 
 func GetSchema(resource string) (SqlSchema, error) {
-	_, err := os.Stat(resource)
-	if err != nil {
-		sc, err := NewDatabaseSchema(resource)
+	fi, err := os.Stat(resource)
+	if err == nil && fi.Mode().IsRegular() {
+		sc, err := NewFileSchema(resource)
 		return sc, err
 	} else {
-		sc, err := NewFileSchema(resource)
+		sc, err := NewDatabaseSchema(resource)
 		return sc, err
 	}
 }
